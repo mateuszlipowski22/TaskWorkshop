@@ -1,3 +1,4 @@
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
@@ -13,9 +14,14 @@ public class TaskManager {
     public static void main(String[] args) throws IOException {
 
         String fileName="tasks.csv";
-        String[][] taskListTable = fileToString(fileName);
+        String[][] tasks = fileToString(fileName);
 
-        System.out.println(Arrays.deepToString(taskListTable));
+        System.out.println(Arrays.deepToString(tasks));
+
+        printList(tasks);
+
+        tasks = removeTask(tasks);
+        printList(tasks);
 
     }
 
@@ -40,7 +46,6 @@ public class TaskManager {
             }
 
         }
-
         return stringList;
     }
 
@@ -50,6 +55,29 @@ public class TaskManager {
         }
 
         return inputLine[2].equals("true") || inputLine[2].equals("false");
+    }
+
+    public static void printList(String[][] arrayOfTasks){
+        String taskLine;
+        System.out.println("List:");
+        for(int i=0;i<arrayOfTasks.length;i++){
+            taskLine = StringUtils.join(arrayOfTasks[i]," ");
+            System.out.println(i + ": " + taskLine);
+        }
+    }
+
+    public static String[][] removeTask(String[][] tasks){
+
+        Scanner scanRemove = new Scanner(System.in);
+        System.out.println("Please select task number to remove: ");
+        int taskNumber;
+        while(!scanRemove.hasNextInt()){
+            System.out.println("Incorrect argument. Please select the task number greater or equal 0");
+            scanRemove.next();
+        }
+        taskNumber=scanRemove.nextInt();
+
+        return ArrayUtils.removeElement(tasks, tasks[taskNumber]);
     }
 
 }
