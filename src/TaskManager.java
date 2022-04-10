@@ -70,9 +70,10 @@ public class TaskManager {
 
         Scanner scanRemove = new Scanner(System.in);
         System.out.println("Please select task number to remove: ");
+
         int taskNumber;
         while(!scanRemove.hasNextInt()){
-            System.out.println("Incorrect argument. Please select the task number greater or equal 0");
+            System.out.println("Incorrect argument. Please select the task number to delete");
             scanRemove.next();
         }
         taskNumber=scanRemove.nextInt();
