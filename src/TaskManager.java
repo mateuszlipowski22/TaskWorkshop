@@ -77,16 +77,13 @@ public class TaskManager {
     }
 
     public static boolean inputTblValidation(String[] inputLine) {
-        if(inputLine.length!=3){
-            return false;
-        }
 
         Pattern datePattern = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
-        if(!datePattern.matcher(inputLine[1]).matches()){
+        if(!datePattern.matcher(inputLine[inputLine.length-2]).matches()){
             return false;
         }
 
-        return inputLine[2].equals("true") || inputLine[2].equals("false");
+        return inputLine[inputLine.length-1].equals("true") || inputLine[inputLine.length-1].equals("false");
     }
 
     public static void printTasksList(String[][] arrayOfTasks){
