@@ -48,6 +48,7 @@ public class TaskManager {
             printMenu();
             userSelection = scannerMenu.next();
         }
+        System.out.println(RED + "Bye, Bye" + RESET);
         return tasks;
     }
 
